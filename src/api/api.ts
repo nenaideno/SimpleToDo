@@ -8,7 +8,7 @@ let instance = axios.create({
 export const listAPI = {
 
     getTodos: () => {
-        return instance.get('/todos')
+        return instance.get('/todos?_limit=10')
     }
 
 }
