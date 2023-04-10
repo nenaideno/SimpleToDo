@@ -6,12 +6,14 @@ import { useForm } from "react-hook-form";
 
 const List = (props: any) => {
 
-    const { register, handleSubmit, watch, formState: { errors }, reset } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, clearErrors } = useForm();
     const onSubmit = (data: any) => {
-        props.addTodoAC(data)
+        data.title && props.addTodoAC(data)
         reset()
+        setIsSubmit(false)
     };
 
+    let [isSubmit, setIsSubmit] = useState(false)
     let [completedCount, setCompleledCount] = useState(0)
 
     let ListElement = props.todoList.map((e: any) => {
@@ -38,8 +40,11 @@ const List = (props: any) => {
             <h1>Daily To Do List</h1>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="content-search">
-                    <input defaultValue='' {...register("title")} placeholder='Add new list item' type="text" />
-                    <button type='submit'>Add</button>
+                    <input {...register("title", { minLength: 3 })} name='title' placeholder='Add new list item' type="text" />
+                    <button onClick={() => setIsSubmit(true)} type='submit'>Add</button>
+                </div>
+                <div className="content-search-error">
+                    {(errors.title) && (isSubmit) && <span className='search-error'>The minimum number of characters in the title = 3</span>}
                 </div>
             </form>
             <div className="content-result">
