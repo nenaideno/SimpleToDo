@@ -2,7 +2,7 @@
 
 # SimpleToDo
 
-![Application performance demonstration](./README/list.png)
+![Application performance demonstration](./list.png)
 
 ## About
 SimpleToDo is a web application for managing to-do items. It allows users to create, read, update, and delete to-do items in a list. The application is built using:
