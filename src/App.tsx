@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import React, {lazy, Suspense } from 'react';
 import './App.scss';
 
 
@@ -9,6 +9,7 @@ import Preloader from './Components/Preloader/Preloader';
 const ListContainer = lazy(() => import('./Components/List/ListContainer'))
 
 const App = () => {
+
   return (
     <div className="app">
       <Suspense fallback={<Preloader/>} >

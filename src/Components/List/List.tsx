@@ -8,13 +8,14 @@ const List = (props: any) => {
 
     const { register, handleSubmit, reset, formState: { errors }, clearErrors } = useForm();
     const onSubmit = (data: any) => {
-        data.title && props.addTodoAC(data)
+        data.title && props.addTodoR(data)
         reset()
         setIsSubmit(false)
     };
 
     let [isSubmit, setIsSubmit] = useState(false)
     let [completedCount, setCompleledCount] = useState(0)
+    let [todoinput, setTodoInput] = useState('')
 
     let ListElement = props.todoList.map((e: any) => {
         if (e.completed) {
@@ -22,14 +23,14 @@ const List = (props: any) => {
             return (
                 <div key={e.id} className="result-block">
                     <div className="round-completed"></div>
-                    <span onClick={() => props.deleteResolvedAC(e.id)} className="text-completed">{e.title}</span>
+                    <span onClick={() => props.deleteResolvedR(e.id)} className="text-completed">{e.title}</span>
                 </div>
             )
         } else {
             return (
                 <div key={e.id} className="result-block">
                     <div className="block-round"></div>
-                    <span onClick={() => props.resolveTodoAC(e.id)} className="block-text">{e.title}</span>
+                    <span onClick={() => props.resolveTodoR(e.id)} className="block-text">{e.title}</span>
                 </div>
             )
         }
@@ -52,7 +53,7 @@ const List = (props: any) => {
             </div>
             <div className="content-controls">
                 <span>{completedCount} / {ListElement.length} tasks completed</span>
-                <span onClick={() => props.clearAllAC()} className='controls-clear'>Clear All</span>
+                <span onClick={() => props.clearAllR()} className='controls-clear'>Clear All</span>
             </div>
         </div>
     </div>

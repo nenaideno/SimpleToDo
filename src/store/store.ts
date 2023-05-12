@@ -1,10 +1,11 @@
-import { applyMiddleware, combineReducers, createStore } from "redux";
-import listReducer from "./listReducer";
-import thunk from "redux-thunk";
+import { configureStore} from "@reduxjs/toolkit";
+import listSlice from "./listSlice";
 
 
-let store = createStore(combineReducers({
-    list: listReducer,
-}), applyMiddleware(thunk))
+const rtkStore = configureStore({
+    reducer: {
+        list: listSlice
+    }
+})
 
-export default store
+export default rtkStore

@@ -1,8 +1,8 @@
-import React, { useEffect, useState, memo } from 'react'
+import React, { useEffect, useState } from 'react'
 import List from "./List"
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import { addTodoAC, clearAllAC, deleteResolvedAC, getTodos, getTodosAC, resolveTodoAC } from "../../store/listReducer";
+import { addTodoR, clearAllR, deleteResolvedR, getTodos, getTodosR, resolveTodoR } from "../../store/listSlice";
 import Preloader from '../Preloader/Preloader';
 
 const ListContainer = (props: any) => {
@@ -14,7 +14,7 @@ const ListContainer = (props: any) => {
                 setIsFetch(false)
             })
         } else {
-            props.getTodosAC(localStorage.getItem('todos'))
+            props.getTodosR(localStorage.getItem('todos'))
             setIsFetch(false)
         }
 
@@ -22,17 +22,18 @@ const ListContainer = (props: any) => {
     if (isFetch) {
         return <Preloader />
     } else {
-        return <List deleteResolvedAC={props.deleteResolvedAC} resolveTodoAC={props.resolveTodoAC} addTodoAC={props.addTodoAC} clearAllAC={props.clearAllAC} todoList={props.todoList} />
+        return <List todoCount={props.todoCount} deleteResolvedR={props.deleteResolvedR} resolveTodoR={props.resolveTodoR} addTodoR={props.addTodoR} clearAllR={props.clearAllR} todoList={props.todoList} />
     }
 
 }
 
-const mapStateToProps = (state: any) => {
+const mstp = (state: any) => {
     return {
-        todoList: state.list.todoList
+        todoList: state.list.todoList,
+        todoCount: state.list.todoCount,
     }
 }
 
-export default compose(connect(mapStateToProps,
-    { getTodos, clearAllAC, addTodoAC, resolveTodoAC, deleteResolvedAC, getTodosAC }
+export default compose(connect(mstp,
+    { getTodos, clearAllR, addTodoR, resolveTodoR, deleteResolvedR, getTodosR }
 ))(ListContainer)
