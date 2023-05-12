@@ -9,11 +9,11 @@ SimpleToDo is a web application for managing to-do items. It allows users to cre
 
 - HTML5 / CSS3
 - SASS(SCSS)
-- TypeScript (4.9.5)
-- React (18.2.0)
-- Redux (4.2.1)
-- Axios (1.3.5)
-- React-hook-form (7.43.9)
+- TypeScript 
+- React 
+- Redux (RTK) 
+- Axios 
+- React-hook-form 
 
 ## Getting Started
 To get started with SimpleToDo, just follow [THIS](https://simple-to-do-psi.vercel.app/)
