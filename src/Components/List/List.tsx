@@ -6,12 +6,16 @@ import { useForm } from "react-hook-form";
 
 const List = (props: any) => {
 
-    const { register, handleSubmit, reset, formState: { errors }, clearErrors } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }} = useForm({mode: "onChange"});
     const onSubmit = (data: any) => {
+        setIsSubmit(true)
+        data.id = Date.now()
+        data.completed = false
         data.title && props.addTodoR(data)
         reset()
         setIsSubmit(false)
     };
+
 
     let [isSubmit, setIsSubmit] = useState(false)
     let [completedCount, setCompleledCount] = useState(0)
@@ -42,10 +46,10 @@ const List = (props: any) => {
             <form onSubmit={handleSubmit(onSubmit)}>
                 <div className="content-search">
                     <input {...register("title", { minLength: 3 })} name='title' placeholder='Add new list item' type="text" />
-                    <button onClick={() => setIsSubmit(true)} type='submit'>Add</button>
+                    <button type='submit'>Add</button>
                 </div>
                 <div className="content-search-error">
-                    {(errors.title) && (isSubmit) && <span className='search-error'>The minimum number of characters in the title = 3</span>}
+                    {(errors.title) && <span className='search-error'>The minimum number of characters in the title = 3</span>}
                 </div>
             </form>
             <div className="content-result">
