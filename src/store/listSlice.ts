@@ -28,10 +28,7 @@ const listSlice = createSlice({
             localStorage.setItem("todos", JSON.stringify(state.todoList))
         },
         resolveTodoR(state, action) {
-            state.todoList = state.todoList.filter((e: any) => {
-                e.id === action.payload && (e.completed = true)
-                return e
-            })
+            state.todoList.forEach((e: any) => e.id === action.payload && (e.completed = true))
             localStorage.setItem("todos", JSON.stringify(state.todoList))
         },
         deleteResolvedR(state, action) {
